@@ -1,18 +1,16 @@
-import BASE_URL from './../configs/api';
+import BASE_URL from '../configs/api.js';
 
 
-/**
- *
- * @param {object} query
- * @param {number} [query.page]
- * @param {number} [query.results]
- * @param {string} [query.seed]
- * @return {Promise<*>}
- */
 
-export const getUsers = query =>
-    fetch(`${BASE_URL}?${queryString.stringify(query)}`)
-    .then(res => {
-        console.log()
-        res.json()
-    });
+export default async function getUsers(resultsAmount){
+    try{
+  
+        
+        const responseFetch = await fetch(`${BASE_URL.BASE_URL}?results=${resultsAmount}&seed=name`);
+        return await responseFetch.json();
+    }
+    catch(err){
+        console.log(`${err}`);
+    }
+   
+}

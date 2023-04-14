@@ -1,20 +1,12 @@
 'use strict';
 
-const BASE_URL = 'https://randomuser.me/api/';
+import getUsers from '../src/api/index.js'
+
+
 
 let resultsAmount = 10;
 
-   
-async function getUsers(){
-    try{
-        const responseFetch = await fetch(`${BASE_URL}?results=${resultsAmount}&seed=name`);
-        return await responseFetch.json();
-    }
-    catch(err){
-        console.log(`${err}`);
-    }
-   
-}
+
 
 function createElem(type, {classNames, attributes}, ...children){
 
@@ -84,7 +76,7 @@ async function render() {
 
     try{
 
-        const users = await getUsers();
+        const users = await getUsers(resultsAmount);
         const form = createInputForm();
         const usersCardsArray =  users.results.map((user) => createCard(user));
 
