@@ -1,36 +1,10 @@
 'use strict';
-
-import getUsers from '../src/api/index.js'
-
-
+import getUsers from '../src/api/index.js';
+import createElem from './utils/createFunc.js';
 
 let resultsAmount = 10;
 
-
-
-function createElem(type, {classNames, attributes}, ...children){
-
-
-    const elem = document.createElement(type);
-
-    if(attributes){
-        attributes.forEach((obj) => {
-            for (const key in obj) {
-                elem.setAttribute(key, obj[key]);
-            }
-        })
-       
-    }
-    elem.classList.add(...classNames);
-
-    elem.append(...children);
-
-
-    return elem;
-}
-
-function createCard(obj){
-
+function createCard(obj) {
     const birth = obj.dob.date;
     const date = new Date(birth);
 
@@ -48,14 +22,12 @@ function createCard(obj){
     const divBirth = createElem('div', {classNames: ['div-birth']});
     divBirth.append(p, gender);
 
-
     return createElem('article', {classNames: ['user-card']}, img, h3, userMail, divBirth,  div);
-
 }
 
 function createInputForm() {
     const label = createElem('label', {classNames: ['form-label']}, 'Input the number of cards');
-    const input = createElem('input', {classNames: ['user-input'], attributes: [{type: 'number'}, {min:1}, {max: 5000}]});
+    const input = createElem('input', {classNames: ['user-input'], attributes: [{type: 'number'}, {min:1}, {max: 5000}, {value: resultsAmount}]});
     const button = createElem('button', {classNames: ['btn','input-btn']}, 'Submit');
     const form = createElem('form', {classNames: ['form']}, label, input, button);
    
@@ -63,19 +35,13 @@ function createInputForm() {
         event.preventDefault();
         resultsAmount = form[0].valueAsNumber;
         render();
-
-    })
-
+    });
 
     return form;
-
 }
 
 async function render() {
-
-
-    try{
-
+    try {
         const users = await getUsers(resultsAmount);
         const form = createInputForm();
         const usersCardsArray =  users.results.map((user) => createCard(user));
@@ -87,14 +53,10 @@ async function render() {
         elementsForRender.push(...usersCardsArray);
 
         root.replaceChildren(...elementsForRender);
-
-
     }
-    catch(err){
+    catch(err) {
         console.log(`${err}`);
     }
-   
-
 }
 
 render();
