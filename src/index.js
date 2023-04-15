@@ -1,6 +1,8 @@
 'use strict';
 import getUsers from '../src/api/index.js';
 import createElem from './utils/createFunc.js';
+import loading from './utils/loadFunc.js';
+import showError from './utils/errorFunc.js';
 
 let resultsAmount = 10;
 
@@ -41,6 +43,9 @@ function createInputForm() {
 }
 
 async function render() {
+    const spinner = loading();
+    document.body.append(spinner);
+
     try {
         const users = await getUsers(resultsAmount);
         const form = createInputForm();
@@ -53,9 +58,10 @@ async function render() {
         elementsForRender.push(...usersCardsArray);
 
         root.replaceChildren(...elementsForRender);
+        spinner.remove();
     }
     catch(err) {
-        console.log(`${err}`);
+        showError();
     }
 }
 
