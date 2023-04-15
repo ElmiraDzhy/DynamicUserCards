@@ -1,0 +1,49 @@
+.form{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100%;
+    height: 180px;
+
+    padding: 20px 0;
+
+    border-bottom: 1px solid violet;
+}
+
+.form-label{
+    color: rgb(126, 61, 0);
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.user-input{
+
+    width: 150px;
+    height: 30px;
+
+    border: none;
+    background-color: #9494c7a6;
+    border: 1px solid #c156f6;
+
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+
+}
+
+.user-input:focus{
+    outline: none;
+    border: 1px solid #470568;
+
+}
+
+.input-btn{
+    color: #c156f6;
+    background-color:#f67656;
+    
+}

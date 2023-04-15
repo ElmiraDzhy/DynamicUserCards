@@ -1,0 +1,18 @@
+.error-wrapper{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #ffb056;
+
+    font-size: 50px;
+    font-weight: 600;
+    color: #5c1200;
+
+}
+
