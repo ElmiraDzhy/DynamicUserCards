@@ -12,6 +12,10 @@
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     min-height: 100vh;
     background: linear-gradient(rgba(238, 130, 238, 0.562), rgba(137, 43, 226, 0.596));
 }
